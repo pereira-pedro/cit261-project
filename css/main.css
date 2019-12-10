@@ -38,13 +38,6 @@ body {
 
 }
 
-/* Desktop Styles */
-@media only screen and (min-width: 961px) {
-  body {
-    background-color: #B2D6FF; /* Blue */
-  }
-}
-
 a:link {
   color: #fafafa;
   text-decoration: none;
@@ -93,7 +86,8 @@ a:visited:active {
   color: #000000;
   display: flex;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
+  flex-direction: column;
 }
 
 .company {

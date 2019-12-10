@@ -26,6 +26,8 @@ const _ranges = [
     { name: '10 years', value: '10y' }
 ];
 
+var _stockChart = null;
+
 const onDOMLoaded = function () {
     const companySelector = document.getElementById('company-selector');
 
@@ -63,6 +65,9 @@ function companyAutocomplete(e) {
     const datalist = new DataList('company-list');
     datalist.empty();
 
+    const progressBar = document.getElementById('progress-bar');
+    progressBar.style.display = 'block';
+
     _apiGet(
         'https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/auto-complete',
         {
@@ -80,6 +85,9 @@ function companyAutocomplete(e) {
         },
         error => {
             console.log(JSON.stringify(error));
+        },
+        () => {
+            progressBar.style.display = 'none';
         });
 }
 
@@ -116,6 +124,9 @@ function companyList(e) {
 function companySelected(e) {
     const company = document.querySelectorAll(`option[value='${e.target.value}']`);
 
+    if (company[0] === null) {
+        return;
+    }
     document.getElementById("company-name").innerText = company[0].innerText;
     document.getElementById("company-header").style.display = "flex";
 
@@ -129,10 +140,16 @@ function drawCompanyChart(company) {
     }
 
     const stockChart = document.getElementById('stock-chart');
-    const progressBar = document.getElementById('progress-bar');
+    const progressBar = document.getElementById('progress-spinner');
+    const message = document.getElementById("message");
 
     progressBar.style.display = 'block';
     stockChart.style.display = 'none';
+    message.innerHTML = '';
+
+    if (_stockChart !== null) {
+        _stockChart.clearChart();
+    }
 
     _apiGet(
         "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-chart",
@@ -142,10 +159,8 @@ function drawCompanyChart(company) {
             range: document.getElementById("range-data").value
         },
         response => {
-            stockChart.style.display = 'flex';
-            progressBar.style.display = 'none';
             if (!('timestamp' in response.chart.result[0])) {
-                document.getElementById("message").innerHTML = "<i>There's no data to show.</i>";
+                message.innerHTML = "<i>There's no data to show.</i>";
                 return;
             }
             google.charts.load('current', { 'packages': ['corechart'] });
@@ -153,6 +168,8 @@ function drawCompanyChart(company) {
         },
         error => {
             console.log(JSON.stringify(error));
+        },
+        () => {
             stockChart.style.display = 'block';
             progressBar.style.display = 'none';
         });
@@ -163,7 +180,8 @@ function _apiGet(
     uri,
     query,
     handlerThen,
-    handlerCatch) {
+    handlerCatch,
+    handleFinally) {
     const url = new URL(uri)
 
     query.lang = _api.lang;
@@ -186,6 +204,11 @@ function _apiGet(
         })
         .catch(err => {
             handlerCatch(err);
+        })
+        .finally(() => {
+            if (handleFinally !== undefined) {
+                handleFinally();
+            }
         });
 }
 
@@ -274,7 +297,9 @@ function _drawChart(response) {
         legend: 'none'
     };
 
-    var chart = new google.visualization.CandlestickChart(document.getElementById('stock-chart'));
+    if (_stockChart === null) {
+        _stockChart = new google.visualization.CandlestickChart(document.getElementById('stock-chart'));
+    }
 
-    chart.draw(data, options);
+    _stockChart.draw(data, options);
 }

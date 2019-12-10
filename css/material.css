@@ -2,6 +2,7 @@
   position:relative; 
   display:flex;
   padding: 15px;
+  flex-direction: column;
 }
 
 .group input {
@@ -28,6 +29,7 @@
     left:20px;
     transition:0.2s ease all; 
 }
+
 .group input:invalid ~ label {
     top:25px;  
     color:#000000; 
@@ -48,4 +50,21 @@
 
 .group .mb-20 {
     margin-bottom: 20px;
+}
+
+.group .progress-bar {
+  width: 0;
+  height: 3px;
+  background-color: red;
+  animation: progress 1.3s infinite forwards;
+  display: none;
+}
+
+@keyframes progress {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
 }
