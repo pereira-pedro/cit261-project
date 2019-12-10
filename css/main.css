@@ -1,0 +1,149 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #102027;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Mobile Styles */
+@media only screen and (max-width: 400px) {
+  .input-search-company
+  {
+       width: 100%;
+       max-width: 400px;
+       box-sizing: border-box;
+  } 
+
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+
+}
+
+/* Tablet Styles */
+@media only screen and (min-width: 401px) and (max-width: 960px) {
+  .input-search-company
+  {
+       width: 100%;
+       max-width: 960px;
+       box-sizing: border-box;
+  }  
+
+}
+
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+  body {
+    background-color: #B2D6FF; /* Blue */
+  }
+}
+
+a:link {
+  color: #fafafa;
+  text-decoration: none;
+}
+a:visited {
+  color: #fafafa;
+  text-decoration: none;
+}
+a:hover,
+a:visited:hover {
+  color: #fafafa;
+  text-decoration: none;
+}
+a:active,
+a:visited:active {
+  color: #fafafa;
+  text-decoration: none;
+}
+  
+.page {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.section {
+  width: 100%;
+  
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  background-color: #37474f;
+  padding-top: 15px;
+  margin-top: 15px;
+}
+
+.content {
+  background-color: #102027;
+  color: #ffffff;
+}
+
+.container {
+  padding: 5px;
+  background-color: #eceff1;
+  color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+
+.company {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+
+/* Height & width depends on how you want to reveal the overlay (see JS below) */   
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed; /* Stay in place */
+  z-index: 999; /* Sit on top */
+  left: 0;
+  top: 0;
+  background-color: #102027;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+/* Position the content inside the overlay */
+.overlay-content {
+  position: relative;
+  top: 25%; /* 25% from the top */
+  width: 100%; /* 100% width */
+  
+  
+}
+
+/* The navigation links inside the overlay */
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block; /* Display block instead of inline */
+  transition: 0.3s; /* Transition effects on hover (color) */
+}
+
+/* When you mouse over the navigation links, change their color */
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+/* Position the close button (top right corner) */
+.overlay .closebtn {
+  position: absolute;
+  right: 20px;
+  font-size: 60px;
+}
