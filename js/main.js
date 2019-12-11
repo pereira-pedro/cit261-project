@@ -53,12 +53,12 @@ function companyAutocomplete(e) {
     const query = e.target.value;
 
     // this is valid only if the user is typing
-    if (!('inputType' in e)) {
+    /*if (!('inputType' in e)) {
         return;
-    }
+    }*/
 
-    // only queries with 4 characters
-    if (query.length < 4) {
+    // only queries with 3 characters
+    if (query.length < 3) {
         return;
     }
 
