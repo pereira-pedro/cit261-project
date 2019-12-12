@@ -1,55 +1,77 @@
-.group { 
-  position:relative; 
-  display:flex;
+.group {
+  position: relative;
+  display: flex;
   padding: 15px;
   flex-direction: column;
 }
 
-.group input {
-  font-size:18px;
-  padding:10px 10px 10px 10px;
+.group input,
+select {
+  font-size: 18px;
+  padding: 10px 10px 10px 10px;
   width: 100%;
-  border:none;
+  border: none;
   background-color: #e2f1f8;
 }
 
 .group button {
-    font-size:18px;
-    padding:10px 10px 10px 10px;
-    width: 100%;
-    border:none;
-    background-color: #e2f1f8;
-    margin-top: 20px;
-  }
-  
+  font-size: 18px;
+  padding: 10px 10px 10px 10px;
+  width: 100%;
+  border: none;
+  background-color: #e2f1f8;
+}
+
 .group label {
-    font-weight:normal;
-    position:absolute;
-    pointer-events:none;
-    left:20px;
-    transition:0.2s ease all; 
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 9px;
+  transition: 0.2s ease all;
 }
 
 .group input:invalid ~ label {
-    top:25px;  
-    color:#000000; 
-    font-size:18px;
+  top: 9px;
+  color: #000000;
+  font-size: 18px;
 }
 
 .group input:valid ~ label {
-    top:-10px;
-    color:#ffffff;
-    font-size:14px;
+  top: -20px;
+  color: #ffffff;
+  font-size: 14px;
 }
 
-.group input:focus ~ label 		{
-    top:-10px;
-    font-size:14px;
-    color:#ffffff;
+.group input:focus ~ label {
+  top: -20px;
+  font-size: 14px;
+  color: #ffffff;
 }
 
-.group .mb-20 {
-    margin-bottom: 20px;
+.group select:invalid ~ label {
+  top: 25px;
+  color: #000000;
+  font-size: 18px;
+}
+
+.group select:valid ~ label {
+  top: -10px;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.group select:focus ~ label {
+  top: -10px;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mb-40 {
+  margin-bottom: 40px;
 }
 
 .group .progress-bar {

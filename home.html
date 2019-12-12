@@ -10,20 +10,18 @@
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/material.css" />
   <link rel="stylesheet" href="css/spinner.css" />
+  <link rel="stylesheet" href="css/autocomplete.css" />
 </head>
 
 <body>
   <div class="page">
     <div class="section header">
       <div class="group">
-        <input type="text" id="company-selector" list="company-list" value="" required>
-        <label>Stock symbol or company name</label>
-        <div id="progress-bar" class="progress-bar"></div>
-        <datalist id="company-list">
-          <option value="test1">Test 1</option>
-          <option value="test2">Test 2</option>
-          <option value="test3">Test 3</option>
-        </datalist>
+        <div class="autocomplete">
+          <input type="text" id="company-selector" value="" required>
+          <label>Stock symbol or company name</label>
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
       </div>
 
     </div>
@@ -47,38 +45,34 @@
         <div id="progress-spinner" style="height: 500px; padding-top: 50px; display: none" class="spinner"></div>
       </div>
 
-      <div id="menu" class="overlay">
+      <div id="menu" class="overlay-menu">
         <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
         <!-- Overlay content -->
         <div class="overlay-content">
-          <div class="group mb-20">You can customize data series by choosing interval and rage below.</div>
+          <div class="group mb-40">You can customize data series by choosing interval and rage below.</div>
           <div class="group mb-20">
-            <input type="text" id="interval" list="interval-list" required />
-            <input type="hidden" id="interval-data" value="60m" />
-            <datalist id="interval-list">
-              <option value="1 minute">1 minute</option>
-              <option value="2 minutes">2 minutes</option>
-              <option value="5 minutes">5 minutes</option>
-              <option value="15 minutes">15 minutes</option>
-              <option value="1 hour">1 hour</option>
-              <option value="1 day">1 day</option>
-            </datalist>
+            <select id="interval" required>
+              <option value="1m">1 minute</option>
+              <option value="2m">2 minutes</option>
+              <option value="5m">5 minutes</option>
+              <option value="15m">15 minutes</option>
+              <option value="60m" selected>1 hour</option>
+              <option value="1d">1 day</option>
+            </select>
             <label for="interval">Interval</label>
           </div>
           <div class="group mb-20">
-            <input type="text" id="range" list="range-list" required />
-            <input type="hidden" id="range-data" value="1d" />
-            <datalist id="range-list">
-              <option>1 day</option>
-              <option>5 days</option>
-              <option>1 month</option>
-              <option>3 months</option>
-              <option>6 months</option>
-              <option>1 year</option>
-              <option>2 years</option>
-              <option>5 years</option>
-              <option>10 years</option>
-            </datalist>
+            <select id="range" required>
+              <option value="1d" selected>1 day</option>
+              <option value="5d">5 days</option>
+              <option value="1mo">1 month</option>
+              <option value="3mo">3 months</option>
+              <option value="6mo">6 months</option>
+              <option value="1y">1 year</option>
+              <option value="2y">2 years</option>
+              <option value="5y">5 years</option>
+              <option value="10y">10 years</option>
+            </select>
             <label for="range">Range</label>
           </div>
           <div class="group">
@@ -88,12 +82,23 @@
 
       </div>
 
+      <div id="dialog-message" class="overlay-dialog">
+        <div class="overlay-content">
+          <div class="group">
+            <div id="dialog-message-text"></div>
+          </div>
+          <div class="group">
+            <button onclick="closeDialogMessage()">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script src="js/datalist.js"></script>
+  <!--  <script src="js/datalist.js"></script> -->
   <script src="js/main.js"></script>
+  <script src="js/autocomplete.js"></script>
 </body>
 
 </html>

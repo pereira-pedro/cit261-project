@@ -1,5 +1,5 @@
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   background-color: #102027;
 }
 
@@ -11,31 +11,29 @@ body {
 
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
-  .input-search-company
-  {
-       width: 100%;
-       max-width: 400px;
-       box-sizing: border-box;
-  } 
+  .input-search-company {
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+  }
 
-  .overlay a {font-size: 20px}
+  .overlay a {
+    font-size: 20px;
+  }
   .overlay .closebtn {
     font-size: 40px;
     top: 15px;
     right: 35px;
   }
-
 }
 
 /* Tablet Styles */
 @media only screen and (min-width: 401px) and (max-width: 960px) {
-  .input-search-company
-  {
-       width: 100%;
-       max-width: 960px;
-       box-sizing: border-box;
-  }  
-
+  .input-search-company {
+    width: 100%;
+    max-width: 960px;
+    box-sizing: border-box;
+  }
 }
 
 a:link {
@@ -56,7 +54,7 @@ a:visited:active {
   color: #fafafa;
   text-decoration: none;
 }
-  
+
 .page {
   display: flex;
   flex-wrap: wrap;
@@ -64,7 +62,7 @@ a:visited:active {
 
 .section {
   width: 100%;
-  
+
   justify-content: center;
   align-items: center;
 }
@@ -97,9 +95,8 @@ a:visited:active {
   padding: 20px;
 }
 
-
-/* Height & width depends on how you want to reveal the overlay (see JS below) */   
-.overlay {
+/* Height & width depends on how you want to reveal the overlay (see JS below) */
+.overlay-menu {
   height: 100%;
   width: 0;
   position: fixed; /* Stay in place */
@@ -112,31 +109,37 @@ a:visited:active {
 }
 
 /* Position the content inside the overlay */
-.overlay-content {
+.overlay-menu .overlay-content {
   position: relative;
   top: 25%; /* 25% from the top */
   width: 100%; /* 100% width */
-  
-  
 }
 
-/* The navigation links inside the overlay */
-.overlay a {
-  padding: 8px;
-  text-decoration: none;
-  font-size: 36px;
-  color: #818181;
-  display: block; /* Display block instead of inline */
-  transition: 0.3s; /* Transition effects on hover (color) */
+/* Height & width depends on how you want to reveal the overlay (see JS below) */
+.overlay-dialog {
+  height: 100%;
+  width: 100%;
+  position: fixed; /* Stay in place */
+  z-index: 999; /* Sit on top */
+  left: 0;
+  top: 0;
+  display: none;
+  background-color: rgb(0, 0, 0, 0);
+  justify-content: center; /*centers items on the line (the x-axis by default)*/
+  align-items: center; /*centers items on the cross-axis (y by default)*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
 }
 
-/* When you mouse over the navigation links, change their color */
-.overlay a:hover, .overlay a:focus {
-  color: #f1f1f1;
+/* Position the content inside the overlay */
+.overlay-dialog .overlay-content {
+  width: 90%;
+
+  background-color: #102027;
 }
 
 /* Position the close button (top right corner) */
-.overlay .closebtn {
+.overlay-menu .closebtn {
   position: absolute;
   right: 20px;
   font-size: 60px;
