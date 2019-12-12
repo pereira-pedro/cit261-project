@@ -4,7 +4,8 @@ class AutoComplete {
     this._progressBar = document.getElementById(progress);
     this._selectHandler = selectHandler;
 
-    this._target.addEventListener("input", this._inputHandler);
+    //this._target.addEventListener("input", this._inputHandler);
+    this._target.addEventListener("change", this._inputHandler);
     this._target.addEventListener("keydown", this._keydownHandler);
     this._target.addEventListener("focus", this._focusHandler);
 
