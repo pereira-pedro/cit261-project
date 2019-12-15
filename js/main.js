@@ -10,6 +10,8 @@ var _logHistory;
 
 const onDOMLoaded = () => {
   const companySelector = document.getElementById("company-selector");
+  _logHistory = document.getElementById("log-history");
+  _logHistory.innerText = "joao";
 
   window.addEventListener("resize", () => {
     var event = new Event("change");
@@ -25,8 +27,6 @@ if (
 ) {
   onDOMLoaded();
 } else {
-  _logHistory = document.getElementById("log-history");
-  _logHistory.innerText = "joao";
   window.addEventListener("DOMContentLoaded", onDOMLoaded);
 }
 
