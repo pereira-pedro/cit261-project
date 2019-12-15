@@ -11,6 +11,7 @@ class AutoComplete {
 
     /*execute a function when someone clicks in the document:*/
     document.addEventListener("click", e => {
+      _logHistory.innerText = "pedro";
       this._closeAllLists(e.target);
     });
   }
