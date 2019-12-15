@@ -1,5 +1,7 @@
 class AutoComplete {
   constructor(target, progress, selectHandler) {
+    _logHistory.innerText = "bastos";
+
     this._target = document.getElementById(target);
     this._progressBar = document.getElementById(progress);
     this._selectHandler = selectHandler;
@@ -8,8 +10,6 @@ class AutoComplete {
     //this._target.addEventListener("change", this._inputHandler);
     this._target.addEventListener("keydown", this._keydownHandler);
     this._target.addEventListener("focus", this._focusHandler);
-
-    _logHistory.innerText = "bastos";
 
     /*execute a function when someone clicks in the document:*/
     document.addEventListener("click", e => {
