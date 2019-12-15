@@ -6,7 +6,7 @@ const _api = {
 };
 
 var _stockChart = null;
-var _logHistory = document.getElementById("log-history");
+var _logHistory;
 
 const onDOMLoaded = () => {
   const companySelector = document.getElementById("company-selector");
@@ -25,7 +25,9 @@ if (
 ) {
   onDOMLoaded();
 } else {
-  document.addEventListener("DOMContentLoaded", onDOMLoaded);
+  _logHistory = document.getElementById("log-history");
+  _logHistory.innerText = "joao";
+  window.addEventListener("DOMContentLoaded", onDOMLoaded);
 }
 
 selectCompany = () => {
