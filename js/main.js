@@ -18,7 +18,7 @@ const onDOMLoaded = () => {
     companySelector.dispatchEvent(event);
   });
 
-  new AutoComplete("company-selector", "progress-bar", selectCompany);
+  new MyAutoComplete("company-selector", "progress-bar", selectCompany);
 };
 
 if (

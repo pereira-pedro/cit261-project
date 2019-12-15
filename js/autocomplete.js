@@ -1,4 +1,4 @@
-class AutoComplete {
+class MyAutoComplete {
   constructor(target, progress, selectHandler) {
     _logHistory.innerText = "bastos";
 
