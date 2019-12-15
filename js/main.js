@@ -6,6 +6,7 @@ const _api = {
 };
 
 var _stockChart = null;
+var _logHistory = document.getElementById("log-history");
 
 const onDOMLoaded = () => {
   const companySelector = document.getElementById("company-selector");

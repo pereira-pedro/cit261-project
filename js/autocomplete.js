@@ -4,8 +4,8 @@ class AutoComplete {
     this._progressBar = document.getElementById(progress);
     this._selectHandler = selectHandler;
 
-    //this._target.addEventListener("input", this._inputHandler);
-    this._target.addEventListener("change", this._inputHandler);
+    this._target.addEventListener("input", this._inputHandler);
+    //this._target.addEventListener("change", this._inputHandler);
     this._target.addEventListener("keydown", this._keydownHandler);
     this._target.addEventListener("focus", this._focusHandler);
 
@@ -17,7 +17,7 @@ class AutoComplete {
 
   _inputHandler = e => {
     var val = e.target.value;
-
+    _logHistory.innerText = val;
     /*close any already open lists of autocompleted values*/
     this._closeAllLists();
     if (!val || val.length < 3) {
@@ -116,6 +116,7 @@ class AutoComplete {
       a.appendChild(b);
     });
   };
+
   _addActive = elements => {
     /*a function to classify an item as "active":*/
     if (!elements) {
