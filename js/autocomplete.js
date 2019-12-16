@@ -1,7 +1,7 @@
-class MyAutoComplete {
-  constructor(target, progress, selectHandler) {
-    _logHistory.innerText = "bastos";
-
+class AutoComplete {
+  init = (target, progress, selectHandler) => {
+    _logHistory = document.getElementById("log-history");
+    _logHistory.innerText = "pedro";
     this._target = document.getElementById(target);
     this._progressBar = document.getElementById(progress);
     this._selectHandler = selectHandler;
@@ -11,16 +11,13 @@ class MyAutoComplete {
     this._target.addEventListener("keydown", this._keydownHandler);
     this._target.addEventListener("focus", this._focusHandler);
 
-    /*execute a function when someone clicks in the document:*/
     document.addEventListener("click", e => {
-      _logHistory.innerText = "pedro";
       this._closeAllLists(e.target);
     });
-  }
+  };
 
   _inputHandler = e => {
     var val = e.target.value;
-    _logHistory.innerText = val;
     /*close any already open lists of autocompleted values*/
     this._closeAllLists();
     if (!val || val.length < 3) {

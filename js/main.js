@@ -1,6 +1,6 @@
 const _api = {
   host: "apidojo-yahoo-finance-v1.p.rapidapi.com",
-  key: "354a251140mshf27709a6ed368a8p109c2cjsn341179353f81",
+  key: "3ea7d00171msh920fd6f33a68bcap176857jsnbef8d20c50c7",
   lang: "en",
   region: "US"
 };
@@ -18,7 +18,8 @@ const onDOMLoaded = () => {
     companySelector.dispatchEvent(event);
   });
 
-  var t = new MyAutoComplete("company-selector", "progress-bar", selectCompany);
+  const ac = new AutoComplete();
+  ac.init("company-selector", "progress-bar", selectCompany);
 };
 
 if (
@@ -95,6 +96,12 @@ _apiGet = (uri, query, handlerThen, handlerCatch, handleFinally) => {
       "x-rapidapi-key": _api.key
     }
   })
+    .then(function(response) {
+      if (!response.ok) {
+        throw Error(response.statusText);
+      }
+      return response;
+    })
     .then(response => {
       return response.json();
     })
