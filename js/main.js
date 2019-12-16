@@ -18,6 +18,7 @@ const onDOMLoaded = () => {
     companySelector.dispatchEvent(event);
   });
 
+  _logHistory.innerText = "bastos";
   const ac = new AutoComplete();
   ac.init("company-selector", "progress-bar", selectCompany);
 };
@@ -96,12 +97,6 @@ _apiGet = (uri, query, handlerThen, handlerCatch, handleFinally) => {
       "x-rapidapi-key": _api.key
     }
   })
-    .then(function(response) {
-      if (!response.ok) {
-        throw Error(response.statusText);
-      }
-      return response;
-    })
     .then(response => {
       return response.json();
     })

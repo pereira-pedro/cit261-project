@@ -1,5 +1,5 @@
 class AutoComplete {
-  init = (target, progress, selectHandler) => {
+  init(target, progress, selectHandler) {
     _logHistory = document.getElementById("log-history");
     _logHistory.innerText = "pedro";
     this._target = document.getElementById(target);
@@ -14,7 +14,7 @@ class AutoComplete {
     document.addEventListener("click", e => {
       this._closeAllLists(e.target);
     });
-  };
+  }
 
   _inputHandler = e => {
     var val = e.target.value;
