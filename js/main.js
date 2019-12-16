@@ -13,10 +13,10 @@ const onDOMLoaded = () => {
   _logHistory = document.getElementById("log-history");
   _logHistory.innerText = "joao";
 
-  window.addEventListener("resize", () => {
+  /*window.addEventListener("resize", () => {
     var event = new Event("change");
     companySelector.dispatchEvent(event);
-  });
+  });*/
 
   _logHistory.innerText = "bastos";
   const ac = new AutoComplete();
