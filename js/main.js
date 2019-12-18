@@ -38,7 +38,13 @@ selectCompany = () => {
 
   document.getElementById("company-name").innerText = company.dataset.name;
   document.getElementById("company-header").style.display = "flex";
-  document.getElementById("company-ope-icon").innerText = "delete";
+
+  var companies = getSavedCompanies();
+
+  document.getElementById("company-ope-icon").innerText =
+    companies.find(c => c.symbol === company.dataset.symbol) === undefined
+      ? "add"
+      : "delete";
 
   drawCompanyChart(company.dataset.symbol);
 };
@@ -122,18 +128,14 @@ closeMenu = () => {
 
 modifyCompany = () => {
   const company = document.getElementById("company-selector");
-  const ope = document.getElementById("company-ope-icon").innerText;
 
   if (!("symbol" in company.dataset) || !("name" in company.dataset)) {
     return;
   }
 
-  var companies = JSON.parse(localStorage.getItem("company_list"));
-  if (companies === null) {
-    companies = [];
-  }
+  var companies = getSavedCompanies();
 
-  switch (ope) {
+  switch (document.getElementById("company-ope-icon").innerText) {
     case "add":
       if (
         companies.find(c => c.symbol === company.dataset.symbol) === undefined
@@ -239,4 +241,13 @@ showDialogMessage = message => {
 
 closeDialogMessage = () => {
   document.getElementById("dialog-message").style.display = "none";
+};
+
+getSavedCompanies = () => {
+  var companies = JSON.parse(localStorage.getItem("company_list"));
+  if (companies === null) {
+    companies = [];
+  }
+
+  return companies;
 };
