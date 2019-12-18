@@ -10,15 +10,12 @@ var _logHistory;
 
 const onDOMLoaded = () => {
   const companySelector = document.getElementById("company-selector");
-  _logHistory = document.getElementById("log-history");
-  _logHistory.innerText = "joao";
 
-  /*window.addEventListener("resize", () => {
+  window.addEventListener("resize", () => {
     var event = new Event("change");
     companySelector.dispatchEvent(event);
-  });*/
+  });
 
-  _logHistory.innerText = "bastos";
   const ac = new AutoComplete();
   ac.init("company-selector", "progress-bar", selectCompany);
 };
@@ -38,8 +35,10 @@ selectCompany = () => {
   if (!("symbol" in company.dataset) || company.dataset.symbol.length === 0) {
     return;
   }
+
   document.getElementById("company-name").innerText = company.dataset.name;
   document.getElementById("company-header").style.display = "flex";
+  document.getElementById("company-ope-icon").innerText = "delete";
 
   drawCompanyChart(company.dataset.symbol);
 };
@@ -121,23 +120,49 @@ closeMenu = () => {
   document.getElementById("menu").style.width = "0%";
 };
 
-addCompany = () => {
+modifyCompany = () => {
   const company = document.getElementById("company-selector");
+  const ope = document.getElementById("company-ope-icon").innerText;
 
   if (!("symbol" in company.dataset) || !("name" in company.dataset)) {
     return;
   }
+
   var companies = JSON.parse(localStorage.getItem("company_list"));
   if (companies === null) {
     companies = [];
   }
-  if (companies.find(c => c.value === company.dataset.name) === undefined) {
-    companies.push({
-      symbol: company.dataset.symbol,
-      name: company.dataset.name
-    });
+
+  switch (ope) {
+    case "add":
+      if (
+        companies.find(c => c.symbol === company.dataset.symbol) === undefined
+      ) {
+        companies.push({
+          symbol: company.dataset.symbol,
+          name: company.dataset.name
+        });
+        localStorage.setItem("company_list", JSON.stringify(companies));
+        showDialogMessage("Company added to list.");
+        document.getElementById("company-ope-icon").innerText = "delete";
+      }
+      break;
+    case "delete":
+      localStorage.setItem(
+        "company_list",
+        JSON.stringify(
+          companies.filter(c => c.symbol !== company.dataset.symbol)
+        )
+      );
+      document.getElementById("company-ope-icon").innerText = "add";
+      document.getElementById("company-header").style.display = "none";
+      document.getElementById("message").innerHTML = "";
+
+      if (_stockChart !== null) {
+        _stockChart.clearChart();
+      }
+      break;
   }
-  localStorage.setItem("company_list", JSON.stringify(companies));
 };
 
 customizeChart = () => {

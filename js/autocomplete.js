@@ -1,7 +1,5 @@
 class AutoComplete {
   init(target, progress, selectHandler) {
-    _logHistory = document.getElementById("log-history");
-    _logHistory.innerText = "pedro";
     this._target = document.getElementById(target);
     this._progressBar = document.getElementById(progress);
     this._selectHandler = selectHandler;
